@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clip Path With Border Radius</title>
+    
+    <style>
+        body {
+            padding: 50px;
+            margin: 0;
+        }
+
+        .box {
+            display: inline-block;
+            width: 190px;
+            height: 190px;
+            filter: url(#round);
+        }
+
+        .shap {
+            /* Use any clip path shape */
+
+            clip-path: polygon(0% 15%, 15% 15%, 15% 0%, 85% 0%, 85% 15%, 100% 15%, 100% 85%, 85% 85%, 85% 100%, 15% 100%, 15% 85%, 0% 85%);
+            /* clip-path: polygon(50% 0%, 0% 100%, 100% 100%); */
+            /* clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%); */
+            /* clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%); */
+            /* clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 25% 100%, 0% 50%); */
+            /* clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); */
+
+            width: 100%;
+            height: 100%;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="shap"></div>
+    </div>
+
+    <!-- Border Rounded SVG Effect -->
+    <svg style="visibility: hidden; position: absolute;" width="0" height="0">
+        <defs>
+            <filter id="round">
+                <!-- Change value stdDeviation="5" as per your rounded shape -->
+                <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
+                    result="goo" />
+                <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+            </filter>
+        </defs>
+    </svg>
+</body>
+
+</html>
